@@ -12,7 +12,7 @@ namespace PipExtensions
             if (!array.Any()) return 0;
             var avg = array.Average();
             var sum = array.Sum(x => Math.Pow(x - avg, 2));
-            return Math.Sqrt(sum / array.Length);
+            return Math.Sqrt(sum/array.Length);
         }
 
         public static double Erf(double x)
@@ -27,10 +27,10 @@ namespace PipExtensions
             var sign = Math.Sign(x);
             x = Math.Abs(x);
 
-            var t = 1.0 / (1.0 + p * x);
-            var y = 1.0 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.Exp(-x * x);
+            var t = 1.0/(1.0 + p*x);
+            var y = 1.0 - ((((a5*t + a4)*t + a3)*t + a2)*t + a1)*t*Math.Exp(-x*x);
 
-            return sign * y;
+            return sign*y;
         }
 
         public static double Erfc(double x)
@@ -40,13 +40,9 @@ namespace PipExtensions
 
         public static double QFunction(double x, double mean, double standardDeviation)
         {
-            if (x < mean)
-            {
-                x = 2 * mean - x;
-                return QFunction(x, mean, standardDeviation);
-            }
-            var z = (x - mean) / standardDeviation;
-            return Erfc(z / Math.Sqrt(2)) / 2;
+            if (x < mean) x = 2*mean - x;
+            var z = (x - mean)/standardDeviation;
+            return Erfc(z/Math.Sqrt(2))/2;
         }
     }
 }
