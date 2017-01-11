@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="MatrixExtensionsTests.cs" />
     <Compile Include="PipExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
