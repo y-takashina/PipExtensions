@@ -67,5 +67,46 @@ namespace PipExtensions
             }
             return matrix;
         }
+
+        public static double[,] Mul(this double[,] a, double[,] b)
+        {
+            var raws = a.GetLength(0);
+            var cols = a.GetLength(1);
+            var raws2 = b.GetLength(0);
+            var cols2 = b.GetLength(1);
+            if (cols != raws2) throw new IndexOutOfRangeException();
+            var c = new double[raws, cols2];
+            for (var i = 0; i < raws; i++)
+            {
+                for (var j = 0; j < cols; j++)
+                {
+                    for (var k = 0; k < cols2; k++)
+                    {
+                        c[i, k] += a[i, j]*b[j, k];
+                    }
+                }
+            }
+            return c;
+        }
+
+        public static T[,] Transpose<T>(this T[,] a)
+        {
+            var raws = a.GetLength(0);
+            var cols = a.GetLength(1);
+            var b = new T[cols, raws];
+            for (var i = 0; i < raws; i++)
+            {
+                for (var j = 0; j < cols; j++)
+                {
+                    b[j, i] = a[i, j];
+                }
+            }
+            return b;
+        }
+
+        public static U[,] T<U>(this U[,] a)
+        {
+            return a.Transpose();
+        }
     }
 }
