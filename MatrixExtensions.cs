@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,6 +86,23 @@ namespace PipExtensions
             return matrix;
         }
 
+        public static double[] Mul(this double[,] a, double[] b)
+        {
+            var raws = a.GetLength(0);
+            var cols = a.GetLength(1);
+            var raws2 = b.Length;
+            if (cols != raws2) throw new InvalidOperationException("matrix size mismatch");
+            var c = new double[raws];
+            for (var i = 0; i < raws; i++)
+            {
+                for (var j = 0; j < cols; j++)
+                {
+                    c[i] += a[i, j]*b[j];
+                }
+            }
+            return c;
+        }
+
         public static double[,] Mul(this double[,] a, double[,] b)
         {
             var raws = a.GetLength(0);
@@ -134,6 +152,26 @@ namespace PipExtensions
         public static double[,] PseudoInverse(this double[,] a)
         {
             return a.GetLength(0) > a.GetLength(1) ? a.T().Mul(a).Inverse().Mul(a.T()) : a.T().Mul(a.Mul(a.T()).Inverse());
+        }
+
+        public static double[,] NormalizeToRaw(this double[,] a, double tolerance = 1e-6)
+        {
+            var raws = a.GetLength(0);
+            var cols = a.GetLength(1);
+            var b = new double[raws, cols];
+            for (var j = 0; j < raws; j++)
+            {
+                var sum = 0.0;
+                for (var k = 0; k < cols; k++)
+                {
+                    sum += a[k, j];
+                }
+                for (var k = 0; k < cols; k++)
+                {
+                    b[k, j] = Math.Abs(sum) < tolerance ? 1.0/raws : a[k, j]/sum;
+                }
+            }
+            return b;
         }
     }
 }

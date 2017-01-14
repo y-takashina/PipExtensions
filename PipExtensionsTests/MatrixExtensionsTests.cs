@@ -71,6 +71,20 @@ namespace PipExtensions.Tests
             }
         }
 
+
+        [TestMethod()]
+        public void MulTest1()
+        {
+            var a = new double[,] {{1, 2}, {3, 4}};
+            var b = new double[] {1, 2};
+            var c = new double[] {5, 11};
+            var d = a.Mul(b);
+            for (var i = 0; i < 2; i++)
+            {
+                Assert.AreEqual(c[i], d[i]);
+            }
+        }
+
         [TestMethod()]
         public void MulTest()
         {
@@ -112,6 +126,7 @@ namespace PipExtensions.Tests
             {
                 Assert.AreEqual(e[i/2, i%2], c[i/2, i%2], 1e-6);
             }
+            var f = new double[,] {{1, 2}, {3, 4}};
         }
 
         [TestMethod()]
