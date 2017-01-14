@@ -3,11 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace PipExtensions
 {
     public static class MatrixExtensions
     {
+        public static void Print<T>(this T[,] self)
+        {
+            var raws = self.GetLength(0);
+            var cols = self.GetLength(1);
+            for (var i = 0; i < raws; i++)
+            {
+                Console.Write("[");
+                for (var j = 0; j < cols; j++)
+                {
+                    Console.Write(self[i, j] + (j < cols - 1 ? ", " : ""));
+                }
+                Console.WriteLine("]");
+            }
+        }
+
+
         public static T[,] SwapRaws<T>(this T[,] self, int r1, int r2) where T : struct
         {
             var raws = self.GetLength(0);
@@ -107,6 +124,16 @@ namespace PipExtensions
         public static U[,] T<U>(this U[,] a)
         {
             return a.Transpose();
+        }
+
+        public static double[,] Inverse(this double[,] a)
+        {
+            return DenseMatrix.OfArray(a).Inverse().ToArray();
+        }
+
+        public static double[,] PseudoInverse(this double[,] a)
+        {
+            return a.T().Mul(a.Mul(a.T()).Inverse());
         }
     }
 }
