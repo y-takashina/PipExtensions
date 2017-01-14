@@ -159,16 +159,16 @@ namespace PipExtensions
             var raws = a.GetLength(0);
             var cols = a.GetLength(1);
             var b = new double[raws, cols];
-            for (var j = 0; j < raws; j++)
+            for (var i = 0; i < raws; i++)
             {
                 var sum = 0.0;
-                for (var k = 0; k < cols; k++)
+                for (var j = 0; j < cols; j++)
                 {
-                    sum += a[k, j];
+                    sum += a[i, j];
                 }
-                for (var k = 0; k < cols; k++)
+                for (var j = 0; j < cols; j++)
                 {
-                    b[k, j] = Math.Abs(sum) < tolerance ? 1.0/raws : a[k, j]/sum;
+                    b[i, j] = Math.Abs(sum) < tolerance ? 1.0/raws : a[i, j]/sum;
                 }
             }
             return b;
