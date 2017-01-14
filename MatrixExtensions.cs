@@ -91,7 +91,7 @@ namespace PipExtensions
             var cols = a.GetLength(1);
             var raws2 = b.GetLength(0);
             var cols2 = b.GetLength(1);
-            if (cols != raws2) throw new IndexOutOfRangeException();
+            if (cols != raws2) throw new InvalidOperationException("matrix size mismatch");
             var c = new double[raws, cols2];
             for (var i = 0; i < raws; i++)
             {
@@ -133,7 +133,7 @@ namespace PipExtensions
 
         public static double[,] PseudoInverse(this double[,] a)
         {
-            return a.T().Mul(a.Mul(a.T()).Inverse());
+            return a.GetLength(0) > a.GetLength(1) ? a.T().Mul(a).Inverse().Mul(a.T()) : a.T().Mul(a.Mul(a.T()).Inverse());
         }
     }
 }
