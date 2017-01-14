@@ -108,9 +108,9 @@ namespace PipExtensions.Tests
             }
             var d = new double[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
             var e = d.Mul(d.PseudoInverse());
-            for (var i = 0; i < 4; i++)
+            for (var i = 0; i < 6; i++)
             {
-                Assert.AreEqual(e[i / 2, i % 2], double.NaN);
+                Assert.AreEqual(e[i % 2, i / 2], double.NaN);
             }
         }
 
