@@ -125,7 +125,6 @@ namespace PipExtensions.Tests
             {
                 Assert.AreEqual(e[i/2, i%2], c[i/2, i%2], 1e-6);
             }
-            var f = new double[,] {{1, 2}, {3, 4}};
         }
 
         [TestMethod()]
