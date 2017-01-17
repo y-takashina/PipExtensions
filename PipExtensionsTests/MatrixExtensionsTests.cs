@@ -14,9 +14,9 @@ namespace PipExtensions.Tests
         [TestMethod()]
         public void SwapRawsTest()
         {
-            var matrix = new[,] {{1, 0, 1}, {1, 0, 0}, {0, 1, 0}};
+            var matrix = new[,] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
             var ret = matrix.SwapRaws(1, 2);
-            var ans = new[,] {{1, 0, 1}, {0, 1, 0}, {1, 0, 0}};
+            var ans = new[,] {{1, 2, 3}, {7, 8, 9}, {4, 5, 6}};
             for (var i = 0; i < 3; i++)
             {
                 for (var j = 0; j < 3; j++)
@@ -29,9 +29,9 @@ namespace PipExtensions.Tests
         [TestMethod()]
         public void SwapColsTest()
         {
-            var matrix = new[,] {{1, 0, 1}, {1, 0, 0}, {0, 1, 0}};
-            var ret = matrix.SwapCols(0, 1);
-            var ans = new[,] {{0, 1, 1}, {0, 1, 0}, {1, 0, 0}};
+            var matrix = new[,] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+            var ret = matrix.SwapCols(1, 2);
+            var ans = new[,] {{1, 3, 2}, {4, 6, 5}, {7, 9, 8}};
             for (var i = 0; i < 3; i++)
             {
                 for (var j = 0; j < 3; j++)
@@ -44,9 +44,9 @@ namespace PipExtensions.Tests
         [TestMethod()]
         public void OrderRawsTest()
         {
-            var matrix = new[,] {{1, 0, 1}, {1, 0, 0}, {0, 1, 0}};
+            var matrix = new[,] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
             var ret = matrix.OrderRaws(new[] {0, 2, 1});
-            var ans = new[,] {{1, 0, 1}, {0, 1, 0}, {1, 0, 0}};
+            var ans = new[,] {{1, 2, 3}, {7, 8, 9}, {4, 5, 6}};
             for (var i = 0; i < 3; i++)
             {
                 for (var j = 0; j < 3; j++)
@@ -59,9 +59,9 @@ namespace PipExtensions.Tests
         [TestMethod()]
         public void OrderColsTest()
         {
-            var matrix = new[,] {{1, 0, 1}, {1, 0, 0}, {0, 1, 0}};
-            var ret = matrix.OrderCols(new[] {1, 0, 2});
-            var ans = new[,] {{0, 1, 1}, {0, 1, 0}, {1, 0, 0}};
+            var matrix = new[,] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+            var ret = matrix.OrderCols(new[] {0, 2, 1});
+            var ans = new[,] {{1, 3, 2}, {4, 6, 5}, {7, 9, 8}};
             for (var i = 0; i < 3; i++)
             {
                 for (var j = 0; j < 3; j++)
@@ -70,7 +70,6 @@ namespace PipExtensions.Tests
                 }
             }
         }
-
 
         [TestMethod()]
         public void MulTest1()
