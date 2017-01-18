@@ -84,5 +84,12 @@ namespace PipExtensions.Tests
             Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[8], 0, 1) - ans[8]) < 0.000001);
             Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[9], 0, 1) - ans[9]) < 0.000001);
         }
+
+        [TestMethod()]
+        public void EntropyTest()
+        {
+            var a = Enumerable.Range(0, 256).Select(x => 1.0/256);
+            Assert.AreEqual(PipExtensions.Entropy(a), 8, 1e-6);
+        }
     }
 }
