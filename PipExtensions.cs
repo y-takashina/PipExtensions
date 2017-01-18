@@ -47,7 +47,7 @@ namespace PipExtensions
 
         public static double Entropy(IEnumerable<double> probabilities)
         {
-            return probabilities.Where(p => Math.Abs(p) > 1e-6).Sum(p => -p*Math.Log(p, 2));
+            return probabilities.Where(p => Math.Abs(p) > 1e-300).Sum(p => -p*Math.Log(p, 2));
         }
     }
 }
