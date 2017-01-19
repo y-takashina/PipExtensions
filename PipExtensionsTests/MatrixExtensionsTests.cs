@@ -112,18 +112,20 @@ namespace PipExtensions.Tests
         [TestMethod()]
         public void PseudoInverseTest()
         {
+            var unit = new double[,] {{1, 0}, {0, 1}};
+            // m < n なら右逆元
             var a = new double[,] {{1, 2, 3}, {4, 5, 6}};
             var b = a.Mul(a.PseudoInverse());
-            var c = new double[,] {{1, 0}, {0, 1}};
             for (var i = 0; i < 4; i++)
             {
-                Assert.AreEqual(b[i/2, i%2], c[i/2, i%2], 1e-6);
+                Assert.AreEqual(b[i/2, i%2], unit[i/2, i%2], 1e-6);
             }
-            var d = new double[,] {{1, 2}, {3, 4}, {5, 6}};
-            var e = d.PseudoInverse().Mul(d);
+            // m > n なら左逆元
+            var c = new double[,] {{1, 2}, {3, 4}, {5, 6}};
+            var d = c.PseudoInverse().Mul(c);
             for (var i = 0; i < 4; i++)
             {
-                Assert.AreEqual(e[i/2, i%2], c[i/2, i%2], 1e-6);
+                Assert.AreEqual(d[i/2, i%2], unit[i/2, i%2], 1e-6);
             }
         }
 
