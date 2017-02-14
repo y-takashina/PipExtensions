@@ -15,6 +15,29 @@ namespace PipExtensions
             return Math.Sqrt(sum/array.Length);
         }
 
+        public static double Entropy(this IEnumerable<double> probabilities)
+        {
+            return probabilities.Where(p => Math.Abs(p) > 1e-300).Sum(p => -p*Math.Log(p, 2));
+        }
+
+        public static double Entropy<T>(this IEnumerable<T> series)
+        {
+            var array = series.ToArray();
+            var points = array.Distinct().ToArray();
+            var probabilities = points.Select(v1 => (double) array.Count(v2 => Equals(v1, v2))/array.Length);
+            return probabilities.Entropy();
+        }
+
+        public static double JointEntropy(IEnumerable<int> series1, IEnumerable<int> series2)
+        {
+            return series1.Zip(series2, Tuple.Create).Entropy();
+        }
+
+        public static double MutualInformation(IEnumerable<int> series1, IEnumerable<int> series2)
+        {
+            return series1.Entropy() + series2.Entropy() - JointEntropy(series1, series2);
+        }
+
         public static double Erf(double x)
         {
             const double a1 = 0.254829592;
@@ -43,11 +66,6 @@ namespace PipExtensions
             if (x < mean) x = 2*mean - x;
             var z = (x - mean)/standardDeviation;
             return Erfc(z/Math.Sqrt(2))/2;
-        }
-
-        public static double Entropy(IEnumerable<double> probabilities)
-        {
-            return probabilities.Where(p => Math.Abs(p) > 1e-300).Sum(p => -p*Math.Log(p, 2));
         }
     }
 }
