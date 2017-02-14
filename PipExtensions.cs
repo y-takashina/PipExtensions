@@ -33,7 +33,7 @@ namespace PipExtensions
             return series1.Zip(series2, Tuple.Create).Entropy();
         }
 
-        public static double MutualInformation(int[] series1, int[] series2)
+        public static double MutualInformation(IEnumerable<int> series1, IEnumerable<int> series2)
         {
             return series1.Entropy() + series2.Entropy() - JointEntropy(series1, series2);
         }
