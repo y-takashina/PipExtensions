@@ -43,16 +43,16 @@ namespace PipExtensions.Tests
                 0.0000000, 0.0563720, 0.1124629, 0.2227026, 0.3286268,
                 0.4283924, 0.5204999, 0.8427008, 0.9661051, 0.9953223
             };
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[0]) - ans[0]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[1]) - ans[1]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[2]) - ans[2]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[3]) - ans[3]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[4]) - ans[4]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[5]) - ans[5]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[6]) - ans[6]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[7]) - ans[7]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[8]) - ans[8]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[9]) - ans[9]) < 0.000001);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[0]) - ans[0]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[1]) - ans[1]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[2]) - ans[2]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[3]) - ans[3]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[4]) - ans[4]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[5]) - ans[5]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[6]) - ans[6]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[7]) - ans[7]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[8]) - ans[8]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.Erf(array[9]) - ans[9]) < 1e-6);
         }
 
         [TestMethod()]
@@ -73,16 +73,16 @@ namespace PipExtensions.Tests
                 0.500000000, 0.460172163, 0.420740291, 0.382088578, 0.344578258,
                 0.308537539, 0.158655254, 0.066807201, 0.022750132, 0.001349898
             };
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[0], 0, 1) - ans[0]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[1], 0, 1) - ans[1]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[2], 0, 1) - ans[2]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[3], 0, 1) - ans[3]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[4], 0, 1) - ans[4]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[5], 0, 1) - ans[5]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[6], 0, 1) - ans[6]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[7], 0, 1) - ans[7]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[8], 0, 1) - ans[8]) < 0.000001);
-            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[9], 0, 1) - ans[9]) < 0.000001);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[0], 0, 1) - ans[0]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[1], 0, 1) - ans[1]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[2], 0, 1) - ans[2]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[3], 0, 1) - ans[3]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[4], 0, 1) - ans[4]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[5], 0, 1) - ans[5]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[6], 0, 1) - ans[6]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[7], 0, 1) - ans[7]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[8], 0, 1) - ans[8]) < 1e-6);
+            Assert.IsTrue(Math.Abs(PipExtensions.QFunction(array[9], 0, 1) - ans[9]) < 1e-6);
         }
 
         [TestMethod()]
