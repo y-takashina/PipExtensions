@@ -89,7 +89,32 @@ namespace PipExtensions.Tests
         public void EntropyTest()
         {
             var a = Enumerable.Range(0, 256).Select(x => 1.0/256);
-            Assert.AreEqual(PipExtensions.Entropy(a), 8, 1e-6);
+            Assert.AreEqual(a.Entropy(), 8, 1e-300);
+        }
+
+        [TestMethod()]
+        public void EntropyTest2()
+        {
+            var a = Enumerable.Range(0, 256);
+            Assert.AreEqual(a.Entropy(), 8, 1e-300);
+            var b = new[] {0, 0, 0, 0};
+            Assert.AreEqual(b.Entropy(), 0, 1e-6);
+        }
+
+        [TestMethod()]
+        public void JointEntropyTest()
+        {
+            var a = new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+            var b = new[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            Assert.AreEqual(PipExtensions.JointEntropy(a, b), 4, 1e-300);
+        }
+
+        [TestMethod()]
+        public void MutualInformationTest()
+        {
+            var a = new[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+            var b = new[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+            Assert.AreEqual(PipExtensions.MutualInformation(a, b), 0, 1e-300);
         }
     }
 }
