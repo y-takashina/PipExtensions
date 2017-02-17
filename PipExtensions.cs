@@ -38,6 +38,21 @@ namespace PipExtensions
             return series1.Entropy() + series2.Entropy() - JointEntropy(series1, series2);
         }
 
+        public static double[,] MutualInformationMatrix(IEnumerable<IEnumerable<int>> series)
+        {
+            var array = series as IEnumerable<int>[] ?? series.ToArray();
+            var n = array.Length;
+            var matrix = new double[n, n];
+            for (var j = 0; j < n; j++)
+            {
+                for (var k = j; k < n; k++)
+                {
+                    matrix[j, k] = matrix[k, j] = MutualInformation(array[j], array[k]);
+                }
+            }
+            return matrix;
+        }
+
         public static double Erf(double x)
         {
             const double a1 = 0.254829592;
