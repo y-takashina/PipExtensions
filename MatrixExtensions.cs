@@ -86,6 +86,44 @@ namespace PipExtensions
             return matrix;
         }
 
+        public static int[] Mul(this int[,] a, int[] b)
+        {
+            var raws = a.GetLength(0);
+            var cols = a.GetLength(1);
+            var raws2 = b.Length;
+            if (cols != raws2) throw new InvalidOperationException("matrix size mismatch");
+            var c = new int[raws];
+            for (var i = 0; i < raws; i++)
+            {
+                for (var j = 0; j < cols; j++)
+                {
+                    c[i] += a[i, j]*b[j];
+                }
+            }
+            return c;
+        }
+
+        public static int[,] Mul(this int[,] a, int[,] b)
+        {
+            var raws = a.GetLength(0);
+            var cols = a.GetLength(1);
+            var raws2 = b.GetLength(0);
+            var cols2 = b.GetLength(1);
+            if (cols != raws2) throw new InvalidOperationException("matrix size mismatch");
+            var c = new int[raws, cols2];
+            for (var i = 0; i < raws; i++)
+            {
+                for (var j = 0; j < cols; j++)
+                {
+                    for (var k = 0; k < cols2; k++)
+                    {
+                        c[i, k] += a[i, j]*b[j, k];
+                    }
+                }
+            }
+            return c;
+        }
+
         public static double[] Mul(this double[,] a, double[] b)
         {
             var raws = a.GetLength(0);
