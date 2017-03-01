@@ -115,5 +115,18 @@ namespace PipExtensions.Tests
             Assert.AreEqual(9, distanceL1, 1e-300);
             Assert.AreEqual(Math.Sqrt(21), distanceL2, 1e-300);
         }
+
+        [TestMethod()]
+        public void HammingDistanceTest()
+        {
+            var v1 = new[] {1.0, 2, 3, 4, 5};
+            var v2 = new[] {-1.0, 0, 3, 2, 8};
+            var s1 = "abcdef".ToCharArray();
+            var s2 = "axcyzf".ToCharArray();
+            var d1 = PipExtensions.HammingDistance(v1, v2);
+            var d2 = PipExtensions.HammingDistance(s1, s2);
+            Assert.AreEqual(4, d1);
+            Assert.AreEqual(3, d2);
+        }
     }
 }
