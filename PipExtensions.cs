@@ -15,6 +15,14 @@ namespace PipExtensions
             return Math.Sqrt(sum/array.Length);
         }
 
+        public static double MinkowskiDistance(IEnumerable<double> vector1, IEnumerable<double> vector2, double order)
+        {
+            var array1 = vector1.ToArray();
+            var array2 = vector2.ToArray();
+            if (array1.Length != array2.Length) throw new IndexOutOfRangeException("vector1 and vector2 must have the same length.");
+            return Math.Pow(array1.Zip(array2, Tuple.Create).Sum(tuple => Math.Pow(Math.Abs(tuple.Item1 - tuple.Item2), order)), 1.0/order);
+        }
+
         public static double Entropy(this IEnumerable<double> probabilities)
         {
             return probabilities.Where(p => Math.Abs(p) > 1e-300).Sum(p => -p*Math.Log(p, 2));
