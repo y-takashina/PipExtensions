@@ -25,6 +25,44 @@ namespace PipExtensions
             }
         }
 
+        public static double[,] Ones(int n)
+        {
+            var matrix = new double[n, n];
+            for (var i = 0; i < n; i++)
+            {
+                for (var j = 0; j < n; j++)
+                {
+                    matrix[i, j] = 1;
+                }
+            }
+            return matrix;
+        }
+
+        public static double[,] Zeros(int n)
+        {
+            var matrix = new double[n, n];
+            for (var i = 0; i < n; i++)
+            {
+                for (var j = 0; j < n; j++)
+                {
+                    matrix[i, j] = 0;
+                }
+            }
+            return matrix;
+        }
+
+        public static double[,] Eye(int n)
+        {
+            var matrix = new double[n, n];
+            for (var i = 0; i < n; i++)
+            {
+                for (var j = 0; j < n; j++)
+                {
+                    matrix[i, j] = i == j ? 1 : 0;
+                }
+            }
+            return matrix;
+        }
 
         public static T[,] SwapRaws<T>(this T[,] self, int r1, int r2) where T : struct
         {
@@ -86,6 +124,18 @@ namespace PipExtensions
             return matrix;
         }
 
+        public static double[,] Add(this double[,] a, double[,] b)
+        {
+            for (var i = 0; i < a.GetLength(0); i++)
+            {
+                for (var j = 0; j < a.GetLength(1); j++)
+                {
+                    a[i, j] += b[i, j];
+                }
+            }
+            return a;
+        }
+
         public static int[] Mul(this int[,] a, int[] b)
         {
             var raws = a.GetLength(0);
@@ -97,7 +147,7 @@ namespace PipExtensions
             {
                 for (var j = 0; j < cols; j++)
                 {
-                    c[i] += a[i, j]*b[j];
+                    c[i] += a[i, j] * b[j];
                 }
             }
             return c;
@@ -117,7 +167,7 @@ namespace PipExtensions
                 {
                     for (var k = 0; k < cols2; k++)
                     {
-                        c[i, k] += a[i, j]*b[j, k];
+                        c[i, k] += a[i, j] * b[j, k];
                     }
                 }
             }
@@ -135,7 +185,7 @@ namespace PipExtensions
             {
                 for (var j = 0; j < cols; j++)
                 {
-                    c[i] += a[i, j]*b[j];
+                    c[i] += a[i, j] * b[j];
                 }
             }
             return c;
@@ -155,7 +205,7 @@ namespace PipExtensions
                 {
                     for (var k = 0; k < cols2; k++)
                     {
-                        c[i, k] += a[i, j]*b[j, k];
+                        c[i, k] += a[i, j] * b[j, k];
                     }
                 }
             }
@@ -206,7 +256,7 @@ namespace PipExtensions
                 }
                 for (var j = 0; j < cols; j++)
                 {
-                    b[i, j] = Math.Abs(sum) < tolerance ? 1.0/raws : a[i, j]/sum;
+                    b[i, j] = Math.Abs(sum) < tolerance ? 1.0 / raws : a[i, j] / sum;
                 }
             }
             return b;
