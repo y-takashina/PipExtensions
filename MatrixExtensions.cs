@@ -275,6 +275,20 @@ namespace PipExtensions
             return a.GetLength(0) > a.GetLength(1) ? a.T().Mul(a).Inverse().Mul(a.T()) : a.T().Mul(a.Mul(a.T()).Inverse());
         }
 
+        public static double[] Normalize(this IEnumerable<int> a)
+        {
+            var array = a as int[] ?? a.ToArray();
+            var sum = array.Sum();
+            return array.Select(v => (double) v / sum).ToArray();
+        }
+
+        public static double[] Normalize(this IEnumerable<double> a)
+        {
+            var array = a as double[] ?? a.ToArray();
+            var sum = array.Sum();
+            return array.Select(v => v / sum).ToArray();
+        }
+
         public static double[,] NormalizeToRaw(this double[,] a, double tolerance = 1e-6)
         {
             var raws = a.GetLength(0);
