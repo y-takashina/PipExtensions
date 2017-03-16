@@ -64,6 +64,21 @@ namespace PipExtensions
             return matrix;
         }
 
+        public static TResult[,] Cast<TSource, TResult>(this TSource[,] self, Func<TSource, TResult> cast)
+        {
+            var m = self.GetLength(0);
+            var n = self.GetLength(1);
+            var matrix = new TResult[m, n];
+            for (var i = 0; i < m; i++)
+            {
+                for (var j = 0; j < n; j++)
+                {
+                    matrix[i, j] = cast(self[i, j]);
+                }
+            }
+            return matrix;
+        }
+
         public static T[,] SwapRaws<T>(this T[,] self, int r1, int r2) where T : struct
         {
             var raws = self.GetLength(0);
@@ -126,14 +141,17 @@ namespace PipExtensions
 
         public static double[,] Add(this double[,] a, double[,] b)
         {
-            for (var i = 0; i < a.GetLength(0); i++)
+            var m = a.GetLength(0);
+            var n = a.GetLength(1);
+            var c = new double[m, n];
+            for (var i = 0; i < m; i++)
             {
-                for (var j = 0; j < a.GetLength(1); j++)
+                for (var j = 0; j < n; j++)
                 {
-                    a[i, j] += b[i, j];
+                    c[i, j] = a[i, j] + b[i, j];
                 }
             }
-            return a;
+            return c;
         }
 
         public static int[] Mul(this int[,] a, int[] b)
