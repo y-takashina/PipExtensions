@@ -15,6 +15,29 @@ namespace PipExtensions
             return Math.Sqrt(sum/array.Length);
         }
 
+        public static double MinkowskiDistance(IEnumerable<double> vector1, IEnumerable<double> vector2, double order)
+        {
+            var array1 = vector1.ToArray();
+            var array2 = vector2.ToArray();
+            if (array1.Length != array2.Length) throw new IndexOutOfRangeException("vector1 and vector2 must have the same length.");
+            return Math.Pow(array1.Zip(array2, Tuple.Create).Sum(tuple => Math.Pow(Math.Abs(tuple.Item1 - tuple.Item2), order)), 1.0/order);
+        }
+
+        public static double ManhattanDistance(IEnumerable<double> vector1, IEnumerable<double> vector2)
+        {
+            return MinkowskiDistance(vector1, vector2, 1);
+        }
+
+        public static double EuclideanDistance(IEnumerable<double> vector1, IEnumerable<double> vector2)
+        {
+            return MinkowskiDistance(vector1, vector2, 2);
+        }
+
+        public static int HammingDistance<T>(IEnumerable<T> vector1, IEnumerable<T> vector2) where T : struct
+        {
+            return vector1.Zip(vector2, Tuple.Create).Count(tuple => !tuple.Item1.Equals(tuple.Item2));
+        }
+
         public static double Entropy(this IEnumerable<double> probabilities)
         {
             return probabilities.Where(p => Math.Abs(p) > 1e-300).Sum(p => -p*Math.Log(p, 2));
@@ -36,6 +59,21 @@ namespace PipExtensions
         public static double MutualInformation(IEnumerable<int> series1, IEnumerable<int> series2)
         {
             return series1.Entropy() + series2.Entropy() - JointEntropy(series1, series2);
+        }
+
+        public static double[,] MutualInformationMatrix(IEnumerable<IEnumerable<int>> series)
+        {
+            var array = series as IEnumerable<int>[] ?? series.ToArray();
+            var n = array.Length;
+            var matrix = new double[n, n];
+            for (var j = 0; j < n; j++)
+            {
+                for (var k = j; k < n; k++)
+                {
+                    matrix[j, k] = matrix[k, j] = MutualInformation(array[j], array[k]);
+                }
+            }
+            return matrix;
         }
 
         public static double Erf(double x)
