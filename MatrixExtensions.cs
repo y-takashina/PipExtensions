@@ -192,6 +192,21 @@ namespace PipExtensions
             return c;
         }
 
+        public static double[,] Mul(this double[,] a, double b)
+        {
+            var raws = a.GetLength(0);
+            var cols = a.GetLength(1);
+            var c = new double[raws, cols];
+            for (var i = 0; i < raws; i++)
+            {
+                for (var j = 0; j < cols; j++)
+                {
+                    c[i, j] = b * a[i, j];
+                }
+            }
+            return c;
+        }
+
         public static double[] Mul(this double[,] a, double[] b)
         {
             var raws = a.GetLength(0);
