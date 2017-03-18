@@ -56,10 +56,7 @@ namespace PipExtensions
             var matrix = new double[n, n];
             for (var i = 0; i < n; i++)
             {
-                for (var j = 0; j < n; j++)
-                {
-                    matrix[i, j] = i == j ? 1 : 0;
-                }
+                matrix[i, i] = 1;
             }
             return matrix;
         }
