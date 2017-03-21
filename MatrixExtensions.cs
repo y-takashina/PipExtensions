@@ -10,6 +10,16 @@ namespace PipExtensions
 {
     public static class MatrixExtensions
     {
+        public static void Print<T>(this IEnumerable<T> self)
+        {
+            Console.Write("[");
+            foreach (var value in self)
+            {
+                Console.Write($"{value}, ");
+            }
+            Console.WriteLine("]");
+        }
+
         public static void Print<T>(this T[,] self)
         {
             var raws = self.GetLength(0);
