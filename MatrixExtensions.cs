@@ -64,6 +64,13 @@ namespace PipExtensions
             return matrix;
         }
 
+        public static int[] OneHot(int n, int k)
+        {
+            var vector = new int[n];
+            vector[k] = 1;
+            return vector;
+        }
+
         public static TResult[,] Cast<TSource, TResult>(this TSource[,] self, Func<TSource, TResult> cast)
         {
             var m = self.GetLength(0);
