@@ -76,6 +76,7 @@ namespace PipExtensions
 
         public static int[] OneHot(int n, int k)
         {
+            if (n < k) throw new ArgumentOutOfRangeException("k must be smaller than n.");
             var vector = new int[n];
             vector[k] = 1;
             return vector;
